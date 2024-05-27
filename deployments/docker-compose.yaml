@@ -1,0 +1,34 @@
+version: '3'
+services: 
+  mysql:
+    image: 'mysql:8.0'
+    ports: 
+      - '3306:3306'
+    environment: 
+      MYSQL_DATABASE: 'dbstart'
+      MYSQL_USER: 'trondol'
+      MYSQL_PASSWORD: '123'
+      MYSQL_ROOT_PASSWORD: '123'
+    networks: 
+      - 'database-net'
+    volumes:
+      - ./data:/var/lib/mysql
+  
+  adminer:
+    image:  'adminer'
+    ports: 
+      - '8080:8080'
+    networks: 
+      - 'database-net'
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    environment:
+      - REDIS_PASSWORD=trondol
+    networks: 
+      - 'database-net'
+
+networks:
+  database-net:

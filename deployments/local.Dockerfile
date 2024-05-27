@@ -4,8 +4,14 @@
 
 FROM mysql:8.0.37-debian
 
-ENV MYSQL_USER=trondol
-ENV MYSQL_PASSWORD=trondolan
+ENV APP_DB_CONNECTION=mysql \
+    APP_DB_HOST=127.0.0.1 \
+    APP_DB_PORT=3306 \
+    APP_DB_DATABASE=dbstart \
+    APP_DB_USERNAME=trondol \
+    APP_DB_PASSWORD=123
+
+ENV REDIS_PASSWORD=trondol
 
 RUN apt-get update && \
     apt-get install -y wget php php-cli php-curl php-mysql
